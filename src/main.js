@@ -16,8 +16,8 @@ form.addEventListener('submit', async (e) => {
   clearGallery();
   showLoader();
 
-  try {
-    const images = await fetchImages(query);
+  fetchImages(query)
+  .then(images => {
     hideLoader();
 
     if (images.length === 0) {
@@ -30,12 +30,13 @@ form.addEventListener('submit', async (e) => {
 
     renderGallery(images);
     refreshLightbox();
-  } catch (error) {
+  })
+  .catch(error => {
     hideLoader();
     iziToast.error({
       title: 'Error',
       message: 'Something went wrong. Please try again later.',
       position: 'topRight',
     });
-  }
-});
+  });
+})
