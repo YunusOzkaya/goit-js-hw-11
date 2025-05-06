@@ -1,6 +1,6 @@
-import { fetchImages } from './api.js';
-import { renderGallery, clearGallery, refreshLightbox } from './gallery.js';
-import { showLoader, hideLoader } from './loader.js';
+import { fetchImages } from './js/api.js';
+import { renderGallery, clearGallery, refreshLightbox } from './js/gallery.js';
+import { showLoader, hideLoader } from './js/loader.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
