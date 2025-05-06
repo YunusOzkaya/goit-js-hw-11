@@ -1,0 +1,11 @@
+import{S as m,i as c}from"./assets/vendor-BrddEoy-.js";(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function o(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function s(e){if(e.ep)return;e.ep=!0;const t=o(e);fetch(e.href,t)}})();const p="50136749-dac3218f1634fe54e8a0614ce",y="https://pixabay.com/api/";async function h(n){const r=new URLSearchParams({key:p,q:n,image_type:"photo",orientation:"horizontal",safesearch:"true"});return(await(await fetch(`${y}?${r}`)).json()).hits}let a;function g(n){const r=n.map(({webformatURL:o,largeImageURL:s,tags:e,likes:t,views:i,comments:f,downloads:d})=>`
+      <a class="photo-card gallery__item" href="${s}">
+        <img src="${o}" alt="${e}" />
+        <div class="info">
+          <p class="info-item"><b>Likes:</b> ${t}</p>
+          <p class="info-item"><b>Views:</b> ${i}</p>
+          <p class="info-item"><b>Comments:</b> ${f}</p>
+          <p class="info-item"><b>Downloads:</b> ${d}</p>
+        </div>
+      </a>`).join("");document.querySelector(".gallery").insertAdjacentHTML("beforeend",r),a||(a=new m(".gallery a"))}function L(){a==null||a.refresh()}function b(){document.querySelector(".gallery").innerHTML=""}function S(){document.querySelector(".loader").classList.remove("hidden")}function l(){document.querySelector(".loader").classList.add("hidden")}const u=document.getElementById("search-form");document.querySelector(".gallery");u.addEventListener("submit",async n=>{n.preventDefault();const r=u.elements.query.value.trim();if(r){b(),S();try{const o=await h(r);if(l(),o.length===0){c.info({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"});return}g(o),L()}catch{l(),c.error({title:"Error",message:"Something went wrong. Please try again later.",position:"topRight"})}}});
+//# sourceMappingURL=index.js.map
