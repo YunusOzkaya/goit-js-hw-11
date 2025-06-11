@@ -20,7 +20,14 @@ export async function fetchImages(query) {
   return data.hits;
 }
 
-
+export function showLoader() {
+    document.querySelector('.loader').classList.remove('hidden');
+  }
+  
+  export function hideLoader() {
+    document.querySelector('.loader').classList.add('hidden');
+  }
+  
 
 let lightbox;
 
