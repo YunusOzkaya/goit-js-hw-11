@@ -9,15 +9,18 @@ const gallery = document.querySelector('.gallery');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const query = form.elements.query.value.trim();
+  const button = form.querySelector('button');
 
   if (!query) return;
 
   clearGallery();
   showLoader();
+  button.disabled = true;
 
-  fetchImages(query)
-  .then(images => {
+  try {
+    const images = await fetchImages(query);
     hideLoader();
+    button.disabled = false;
 
     if (images.length === 0) {
       iziToast.info({
@@ -28,14 +31,13 @@ form.addEventListener('submit', async (e) => {
     }
 
     renderGallery(images);
-    refreshLightbox();
-  })
-  .catch(error => {
+  } catch (error) {
     hideLoader();
+    button.disabled = false;
     iziToast.error({
       title: 'Error',
       message: 'Something went wrong. Please try again later.',
       position: 'topRight',
     });
-  });
-})
+  }
+});
