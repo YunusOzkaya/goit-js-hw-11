@@ -1,17 +1,15 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+let lightbox;
 
 export function showLoader() {
-    document.querySelector('.loader').classList.remove('hidden');
-  }
-  
-  export function hideLoader() {
-    document.querySelector('.loader').classList.add('hidden');
-  }
-  
+  document.querySelector('.loader').classList.remove('hidden');
+}
 
-let lightbox;
+export function hideLoader() {
+  document.querySelector('.loader').classList.add('hidden');
+}
 
 export function renderGallery(images) {
   const markup = images
@@ -43,16 +41,15 @@ export function renderGallery(images) {
 
   if (!lightbox) {
     lightbox = new SimpleLightbox('.gallery a');
+  } else {
+    lightbox.refresh();
   }
-}
-
-
-
-
-export function refreshLightbox() {
-  lightbox?.refresh();
 }
 
 export function clearGallery() {
   document.querySelector('.gallery').innerHTML = '';
+}
+
+export function refreshLightbox() {
+  lightbox?.refresh();
 }
